@@ -2,7 +2,7 @@ from flask import Flask, make_response, request, render_template
 import pandas as pd
 from tensorflow import keras
 import numpy as np
-model = keras.models.load_model('/actionnormal.h5')
+model = keras.models.load_model('actionnormal.h5')
 app = Flask(__name__)
 
 @app.route('/')
