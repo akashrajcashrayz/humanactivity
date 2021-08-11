@@ -6,12 +6,12 @@ model = keras.models.load_model('actionnormal.h5')
 app = Flask(__name__)
 
 @app.route('/')
-def form(prediction_text = 'your predicted activity will be shown here in series in form of list arranged in interval gap of 5 second '):
+def form(prediction_text = 'your predicted activity will be shown here in series in form of list arranged in interval gap of 5 second  '):
     return """
         <html>
             <body>
                 <h1>Human Activity Prediction</h1>
-                <h3>Kindly upload Device Motion recording using SensingKit or Crowd Sense at 50hz for prediction</h3>
+                <h3>Kindly upload Device Motion recording using SensingKit or Crowd Sense at 50hz for prediction so please record more than 5 second activity </h3>
                 <form action="/predict" method="post" enctype="multipart/form-data">
                     <input type="file" name="data_file" />
                     <input type="submit" />
@@ -36,7 +36,7 @@ def predict():
     rate = 250
     reminder  = (len(seriesin))%rate
     serieslenthtotake = len(seriesin) - reminder
-    seriesinput = np.array([seriesin[-serieslenthtotake:][n:n+rate] for n in range(0, len(seriesin[-serieslenthtotake:]), rate)])
+    seriesinput = np.array([seriesin[:serieslenthtotake][n:n+rate] for n in range(0, len(seriesin[:serieslenthtotake]), rate)])
     predictions = model.predict(seriesinput)
     max_predictions = np.argmax(predictions, axis=1)
     my_dict ={1:'downstairs', 4:'jogging', 0:'sitting', 3:'standing', 2:'upstairs', 5:'walking'}
@@ -44,7 +44,7 @@ def predict():
 
     return (form(prediction_text = activity_predition))
   except:
-    return (form(prediction_text = 'please check csv file again and try again'))  
+    return (form(prediction_text = 'please check csv file again and try again or make sure your activity recording is greater than 5 second'))  
 
 if __name__ == "__main__":
 	app.run()
