@@ -39,7 +39,7 @@ def predict():
     seriesinput = np.array([seriesin[-serieslenthtotake:][n:n+rate] for n in range(0, len(seriesin[-serieslenthtotake:]), rate)])
     predictions = model.predict(seriesinput)
     max_predictions = np.argmax(predictions, axis=1)
-    my_dict ={1:'downstairs', 4:'jogging', 0:'sitting', 3:'standing', 2:'upstairs', 5:'waling'}
+    my_dict ={1:'downstairs', 4:'jogging', 0:'sitting', 3:'standing', 2:'upstairs', 5:'walking'}
     activity_predition = [my_dict[x] for x in max_predictions]
 
     return (form(prediction_text = activity_predition))
