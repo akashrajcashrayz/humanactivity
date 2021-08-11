@@ -28,7 +28,7 @@ def form(prediction_text = 'your predicted activity will be shown here in series
 
 
 @app.route('/predict', methods=["POST",'GET'])
-def transform_view():
+def predict():
   try:
 
     f = request.files['data_file']
