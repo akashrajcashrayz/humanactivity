@@ -6,7 +6,7 @@ model = keras.models.load_model('actionnormal.h5')
 app = Flask(__name__)
 
 @app.route('/')
-def form(prediction_text = 'your predicted activity will be shown here in series'):
+def form(prediction_text = 'your predicted activity will be shown here in series in after every 5 second interval'):
     return """
         <html>
             <body>
