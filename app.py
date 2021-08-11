@@ -51,4 +51,5 @@ def predict():
     return (form(prediction_text = 'please check csv file again and try again'))  
 
 if __name__ == "__main__":
-    app.run()
+	app.run()
+
