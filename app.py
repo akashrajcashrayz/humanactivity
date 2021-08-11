@@ -5,10 +5,6 @@ import numpy as np
 model = keras.models.load_model('/actionnormal.h5')
 app = Flask(__name__)
 
-def transform(text_file_contents):
-    return text_file_contents.replace("=", ",")
-
-
 @app.route('/')
 def form(prediction_text = 'your predicted activity will be shown here in series'):
     return """
